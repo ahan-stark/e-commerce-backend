@@ -5,23 +5,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table
-@Entity
+@Entity(name = "categoryz")
 public class Category {
     @Id
-    Integer catergory_id;
+    Integer category_id;
     String catergory_name;
 
     public Category(Integer catergory_id, String catergory_name) {
-        this.catergory_id = catergory_id;
+        this.category_id = catergory_id;
         this.catergory_name = catergory_name;
     }
 
     public Integer getCatergory_id() {
-        return catergory_id;
+        return category_id;
     }
 
-    public void setCatergory_id(Integer catergory_id) {
-        this.catergory_id = catergory_id;
+    public void setCatergory_id(Integer category_id) {
+        this.category_id = category_id;
     }
 
     public String getCatergory_name() {
@@ -35,7 +35,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "catergory_id=" + catergory_id +
+                "catergory_id=" + category_id +
                 ", catergory_name='" + catergory_name + '\'' +
                 '}';
     }
