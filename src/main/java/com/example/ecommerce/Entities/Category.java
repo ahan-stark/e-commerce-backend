@@ -5,38 +5,41 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table
-@Entity(name = "categoryz")
+@Entity(name = "category")
 public class Category {
     @Id
     Integer category_id;
-    String catergory_name;
+    String category_name;
 
-    public Category(Integer catergory_id, String catergory_name) {
-        this.category_id = catergory_id;
-        this.catergory_name = catergory_name;
+    public Category(Integer category_id, String category_name) {
+        this.category_id = category_id;
+        this.category_name = category_name;
     }
 
-    public Integer getCatergory_id() {
+    public Category() {
+    }
+
+    public Integer getcategory_id() {
         return category_id;
     }
 
-    public void setCatergory_id(Integer category_id) {
+    public void setcategory_id(Integer category_id) {
         this.category_id = category_id;
     }
 
-    public String getCatergory_name() {
-        return catergory_name;
+    public String getcategory_name() {
+        return category_name;
     }
 
-    public void setCatergory_name(String catergory_name) {
-        this.catergory_name = catergory_name;
+    public void setcategory_name(String category_name) {
+        this.category_name = category_name;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "catergory_id=" + category_id +
-                ", catergory_name='" + catergory_name + '\'' +
+                "category_id=" + category_id +
+                ", category_name='" + category_name + '\'' +
                 '}';
     }
 }

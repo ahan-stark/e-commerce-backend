@@ -2,10 +2,9 @@ package com.example.ecommerce.Controller;
 
 import com.example.ecommerce.Entities.Category;
 import com.example.ecommerce.Service.CategoryService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -17,7 +16,7 @@ public class CategoryController {
     }
 
     @PostMapping("/addCategory")
-    public void addCategory(@RequestBody Category category){
+    public void addCategory(@RequestBody Category category) {
         categoryService.saveCategory(category);
     }
 }
