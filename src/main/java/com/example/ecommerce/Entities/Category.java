@@ -8,38 +8,38 @@ import javax.persistence.Table;
 @Entity(name = "category")
 public class Category {
     @Id
-    Integer category_id;
-    String category_name;
+    Integer categoryId;
+    String categoryName;
 
-    public Category(Integer category_id, String category_name) {
-        this.category_id = category_id;
-        this.category_name = category_name;
+    public Category(Integer categoryId, String categoryName) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public Category() {
     }
 
-    public Integer getcategory_id() {
-        return category_id;
+    public Integer getcategoryId() {
+        return categoryId;
     }
 
-    public void setcategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setcategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getcategory_name() {
-        return category_name;
+    public String getcategoryName() {
+        return categoryName;
     }
 
-    public void setcategory_name(String category_name) {
-        this.category_name = category_name;
+    public void setcategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "category_id=" + category_id +
-                ", category_name='" + category_name + '\'' +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
                 '}';
     }
 }

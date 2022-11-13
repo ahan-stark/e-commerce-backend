@@ -8,60 +8,60 @@ import javax.persistence.Table;
 @Entity(name = "products")
 public class Products {
     @Id
-    Integer product_id;
-    String product_name;
-    Integer product_category_id;
-    String product_image;
+    Integer productId;
+    String productName;
+    Integer productCategoryId;
+    String productImage;
 
-    public Products(Integer product_id, String product_name, Integer product_category_id, String product_image) {
-        this.product_id = product_id;
-        this.product_name = product_name;
-        this.product_category_id = product_category_id;
-        this.product_image = product_image;
+    public Products(Integer productId, String productName, Integer productCategoryId, String productImage) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productCategoryId = productCategoryId;
+        this.productImage = productImage;
     }
 
     public Products() {
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public Integer getproductId() {
+        return productId;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public void setproductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getproductName() {
+        return productName;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setproductName(String productName) {
+        this.productName = productName;
     }
 
-    public Integer getProduct_category_id() {
-        return product_category_id;
+    public Integer getproductCategoryId() {
+        return productCategoryId;
     }
 
-    public void setProduct_category_id(Integer product_category_id) {
-        this.product_category_id = product_category_id;
+    public void setproductCategoryId(Integer productCategoryId) {
+        this.productCategoryId = productCategoryId;
     }
 
-    public String getProduct_image() {
-        return product_image;
+    public String getproductImage() {
+        return productImage;
     }
 
-    public void setProduct_image(String product_image) {
-        this.product_image = product_image;
+    public void setproductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     @Override
     public String toString() {
         return "Products{" +
-                "product_id=" + product_id +
-                ", product_name='" + product_name + '\'' +
-                ", product_category_id='" + product_category_id + '\'' +
-                ", product_image='" + product_image + '\'' +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productCategoryId='" + productCategoryId + '\'' +
+                ", productImage='" + productImage + '\'' +
                 '}';
     }
 }
