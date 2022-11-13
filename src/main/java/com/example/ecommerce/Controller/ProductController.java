@@ -16,12 +16,12 @@ public class ProductController {
         this.productsService = productsService;
     }
 
-    @PostMapping("/addProducts")
+    @PostMapping("/products")
     public void addProducts(@RequestBody Products products) {
         productsService.addProducts(products);
     }
 
-    @GetMapping("/getProducts/{productCategoryId}")
+    @GetMapping("/products/{productCategoryId}")
     public List<Products> getProducts(@PathVariable("productCategoryId") Integer productCategoryId) {
         return productsService.getProducts(productCategoryId);
     }
