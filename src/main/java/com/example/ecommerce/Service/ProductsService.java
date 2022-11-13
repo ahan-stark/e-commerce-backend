@@ -5,6 +5,7 @@ import com.example.ecommerce.Repository.ProductsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductsService {
@@ -18,7 +19,8 @@ public class ProductsService {
         productsRepository.save(products);
     }
 
-    public List<Products> getProducts() {
-        return productsRepository.findAll();
+    public List<Products> getProducts(Integer productCategoryId) {
+       return productsRepository.findAllByproductCategoryId(productCategoryId);
+
     }
 }

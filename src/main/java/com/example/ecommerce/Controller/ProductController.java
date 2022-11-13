@@ -5,6 +5,7 @@ import com.example.ecommerce.Service.ProductsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -19,8 +20,9 @@ public class ProductController {
     public void addProducts(@RequestBody Products products) {
         productsService.addProducts(products);
     }
-    @GetMapping("/getProducts")
-    public List<Products> getProducts(){
-        return productsService.getProducts();
+
+    @GetMapping("/getProducts/{productCategoryId}")
+    public List<Products> getProducts(@PathVariable("productCategoryId") Integer productCategoryId) {
+        return productsService.getProducts(productCategoryId);
     }
 }
