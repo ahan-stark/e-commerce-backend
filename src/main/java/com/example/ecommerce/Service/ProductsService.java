@@ -20,7 +20,7 @@ public class ProductsService {
     }
 
     public List<Products> getProducts(Integer productCategoryId) {
-       return productsRepository.findAllByproductCategoryId(productCategoryId);
+        return productsRepository.findAllByproductCategoryId(productCategoryId);
 
     }
 }

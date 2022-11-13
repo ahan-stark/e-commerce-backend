@@ -19,4 +19,9 @@ public class CategoryController {
     public void addCategory(@RequestBody Category category) {
         categoryService.saveCategory(category);
     }
+
+    @GetMapping("/getCategories")
+    public List<Category> getCategory() {
+        return categoryService.getCategories();
+    }
 }
