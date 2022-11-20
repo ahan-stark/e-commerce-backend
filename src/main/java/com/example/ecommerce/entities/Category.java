@@ -17,6 +17,7 @@ public class Category {
     @Id
     Integer categoryId;
     String categoryName;
+
     @Override
     public String toString() {
         return "Category{" +

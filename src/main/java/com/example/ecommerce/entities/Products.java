@@ -19,6 +19,7 @@ public class Products {
     String productName;
     Integer productCategoryId;
     String productImage;
+
     @Override
     public String toString() {
         return "Products{" +

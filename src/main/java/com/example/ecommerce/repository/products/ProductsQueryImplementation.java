@@ -8,12 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ProductsQueryImplementation implements ProductQuery{
+public class ProductsQueryImplementation implements ProductQuery {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
     @Override
     public List<Products> getProductByCategoryId(int id) {
-        return jdbcTemplate.query("select * from products where product_category_id = " + id, (rs, rowNum) -> {
+        return jdbcTemplate.query("sel  ect * from products where product_category_id = " + id, (rs, rowNum) -> {
 
             Products products = new Products();
             products.setProductId(rs.getInt("product_id"));

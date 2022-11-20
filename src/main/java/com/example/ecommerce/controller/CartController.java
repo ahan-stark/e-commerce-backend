@@ -1,12 +1,12 @@
 package com.example.ecommerce.controller;
 
 import com.example.ecommerce.entities.Cart;
+import com.example.ecommerce.entities.Products;
 import com.example.ecommerce.service.CartServices;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -18,7 +18,11 @@ public class CartController {
     @PostMapping("/cart/{productId}/{userId}")
     public void addToCart(@PathVariable("productId") Integer productId, @PathVariable("userId") Integer userId){
         cartServices.addToCart(userId,productId);
-
     }
+    @GetMapping("/cart/{userId}")
+    public List<Products> getCartItems(@PathVariable("userId") Integer userId){
+        return cartServices.getCartItems(userId);
+    }
+
 
 }
