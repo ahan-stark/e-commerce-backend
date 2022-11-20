@@ -57,3 +57,8 @@ CREATE TABLE `ecommerce`.`cart` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+ALTER TABLE `ecommerce`.`cart`
+ADD COLUMN `cart_id` INT NOT NULL AUTO_INCREMENT AFTER `product_id`,
+ADD PRIMARY KEY (`cart_id`);
+;
+

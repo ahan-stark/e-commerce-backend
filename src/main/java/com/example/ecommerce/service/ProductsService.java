@@ -1,8 +1,8 @@
-package com.example.ecommerce.Service;
+package com.example.ecommerce.service;
 
-import com.example.ecommerce.Entities.Products;
-import com.example.ecommerce.Repository.Products.ProductsQueryImplementation;
-import com.example.ecommerce.Repository.Products.ProductsRepository;
+import com.example.ecommerce.entities.Products;
+import com.example.ecommerce.repository.products.ProductsQueryImplementation;
+import com.example.ecommerce.repository.products.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

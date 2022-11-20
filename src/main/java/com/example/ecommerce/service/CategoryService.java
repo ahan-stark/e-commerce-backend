@@ -1,7 +1,7 @@
-package com.example.ecommerce.Service;
+package com.example.ecommerce.service;
 
-import com.example.ecommerce.Entities.Category;
-import com.example.ecommerce.Repository.Category.CategoryRepository;
+import com.example.ecommerce.entities.Category;
+import com.example.ecommerce.repository.category.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

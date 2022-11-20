@@ -1,4 +1,4 @@
-package com.example.ecommerce.Entities;
+package com.example.ecommerce.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

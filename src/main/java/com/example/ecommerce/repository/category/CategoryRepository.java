@@ -1,6 +1,6 @@
-package com.example.ecommerce.Repository.Category;
+package com.example.ecommerce.repository.category;
 
-import com.example.ecommerce.Entities.Category;
+import com.example.ecommerce.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

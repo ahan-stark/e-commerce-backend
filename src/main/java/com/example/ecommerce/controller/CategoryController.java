@@ -1,7 +1,7 @@
-package com.example.ecommerce.Controller;
+package com.example.ecommerce.controller;
 
-import com.example.ecommerce.Entities.Category;
-import com.example.ecommerce.Service.CategoryService;
+import com.example.ecommerce.entities.Category;
+import com.example.ecommerce.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
