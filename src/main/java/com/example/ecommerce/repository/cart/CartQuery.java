@@ -8,4 +8,6 @@ public interface CartQuery {
     void addToCart(Integer userId, Integer productId);
 
     List<Products> getCartItems(Integer userId);
+
+    void deleteCartItem(Integer userId, Integer productId);
 }

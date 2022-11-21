@@ -14,15 +14,22 @@ public class CartController {
     public CartController(CartServices cartServices) {
         this.cartServices = cartServices;
     }
+
     CartServices cartServices;
-    @PostMapping("/cart/{productId}/{userId}")
-    public void addToCart(@PathVariable("productId") Integer productId, @PathVariable("userId") Integer userId){
-        cartServices.addToCart(userId,productId);
+
+    @PostMapping("/cart/{userId}/{productId}")
+    public void addToCart(@PathVariable("productId") Integer productId, @PathVariable("userId") Integer userId) {
+        cartServices.addToCart(userId, productId);
     }
+
     @GetMapping("/cart/{userId}")
-    public List<Products> getCartItems(@PathVariable("userId") Integer userId){
+    public List<Products> getCartItems(@PathVariable("userId") Integer userId) {
         return cartServices.getCartItems(userId);
     }
 
-
+    @DeleteMapping("/cart/{userId}/{productId}")
+    public List<Products> deleteCartItem(@PathVariable("userId") Integer userId, @PathVariable("productId") Integer productId) {
+        cartServices.deleteCartItem(userId, productId);
+        return cartServices.getCartItems(userId);
+    }
 }

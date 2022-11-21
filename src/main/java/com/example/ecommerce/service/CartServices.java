@@ -20,4 +20,8 @@ public class CartServices {
     public List<Products> getCartItems(Integer userId) {
         return cartQueryImplementation.getCartItems(userId);
     }
+    public List<Products> deleteCartItem(Integer userId, Integer productId){
+        cartQueryImplementation.deleteCartItem(userId,productId);
+        return cartQueryImplementation.getCartItems(userId);
+    }
 }

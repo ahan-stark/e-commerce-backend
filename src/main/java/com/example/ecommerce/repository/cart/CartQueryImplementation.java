@@ -30,4 +30,10 @@ public class CartQueryImplementation implements CartQuery {
             return products;
         }));
     }
+
+    @Override
+    public void deleteCartItem(Integer userId, Integer productId) {
+        String cartItemDeleteQuery = "delete from cart where user_id = ? and product_id = ?";
+        jdbcTemplate.update(cartItemDeleteQuery, userId, productId);
+    }
 }
