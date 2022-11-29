@@ -16,7 +16,7 @@ public class OrderServices {
 
     public void addToOrders(Integer userId) {
         List<Cart> cartItems = ordersQueryImplementation.getCartItems(userId);
-        ordersQueryImplementation.addToOrders(cartItems,userId);
+        ordersQueryImplementation.addToOrders(cartItems, userId);
         ordersQueryImplementation.deleteCartItems(userId);
 
     }

@@ -14,8 +14,9 @@ public class OrderController {
     public OrderController(OrderServices orderServices) {
         this.orderServices = orderServices;
     }
+
     @PostMapping("/orders/{userId}")
-    public void addToOrders(@PathVariable("userId")Integer userId){
+    public void addToOrders(@PathVariable("userId") Integer userId) {
         orderServices.addToOrders(userId);
     }
 }

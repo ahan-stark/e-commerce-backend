@@ -6,15 +6,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
-public class OrdersQueryImplementation implements OrdersQuery{
+public class OrdersQueryImplementation implements OrdersQuery {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<Cart> getCartItems(Integer userId) {
         List<Cart> cartItemsOfTheUser;
-        cartItemsOfTheUser = jdbcTemplate.query("select user_id,product_id from cart where user_id ="+userId,((rs, rowNum) ->{
+        cartItemsOfTheUser = jdbcTemplate.query("select user_id,product_id from cart where user_id =" + userId, ((rs, rowNum) -> {
             Cart cart = new Cart();
             cart.setUserId(rs.getInt("user_id"));
             cart.setProductId(rs.getInt("product_id"));
@@ -26,9 +27,9 @@ public class OrdersQueryImplementation implements OrdersQuery{
     @Override
     public void addToOrders(List<Cart> cart, Integer userId) {
         Long millis = System.currentTimeMillis();
-        for (Cart individualItems: cart) {
+        for (Cart individualItems : cart) {
             String insertToOrders = "insert into orders(user_id,product_id,order_time_stamp) values (?,?,?)";
-            jdbcTemplate.update(insertToOrders,individualItems.getUserId(),individualItems.getProductId(),millis);
+            jdbcTemplate.update(insertToOrders, individualItems.getUserId(), individualItems.getProductId(), millis);
         }
 
     }
@@ -36,6 +37,6 @@ public class OrdersQueryImplementation implements OrdersQuery{
     @Override
     public void deleteCartItems(Integer userId) {
         String deleteFromCart = "delete from cart where user_id = ?";
-        jdbcTemplate.update(deleteFromCart,userId);
+        jdbcTemplate.update(deleteFromCart, userId);
     }
 }
