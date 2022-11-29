@@ -19,10 +19,10 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/api/auth")
 @AllArgsConstructor
 public class AuthController {
-    
+
     private final AuthService authService;
 
-    @PostMapping(value="/login")
+    @PostMapping(value = "/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
     }
@@ -33,5 +33,5 @@ public class AuthController {
         return new ResponseEntity<>("User Registration Successful",
                 OK);
     }
-    
+
 }

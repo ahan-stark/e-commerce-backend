@@ -33,7 +33,7 @@ import java.security.interfaces.RSAPublicKey;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
@@ -46,19 +46,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-        .authorizeHttpRequests(authorize -> authorize
-        .antMatchers("/api/auth/**")
-        .permitAll()
-        .anyRequest()
-        .authenticated())
-        .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+                .authorizeHttpRequests(authorize -> authorize
+                        .antMatchers("/api/auth/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
                 );
-        
-        
+
+
     }
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
@@ -88,8 +88,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     JwtDecoder jwtDecoder() {
         return NimbusJwtDecoder.withPublicKey(this.publicKey).build();
     }
-    
 
-    
-    
+
 }
