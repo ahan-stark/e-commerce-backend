@@ -14,7 +14,7 @@ public class ProductsQueryImplementation implements ProductQuery {
 
     @Override
     public List<Products> getProductByCategoryId(int id) {
-        return jdbcTemplate.query("sel  ect * from products where product_category_id = " + id, (rs, rowNum) -> {
+        return jdbcTemplate.query("select * from products where product_category_id = " + id, (rs, rowNum) -> {
 
             Products products = new Products();
             products.setProductId(rs.getInt("product_id"));
