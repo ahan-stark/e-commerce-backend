@@ -62,3 +62,22 @@ ADD COLUMN `cart_id` INT NOT NULL AUTO_INCREMENT AFTER `product_id`,
 ADD PRIMARY KEY (`cart_id`);
 ;
 
+CREATE TABLE `ecommerce`.`orders` (
+  `order_id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  `order_time_stamp` BIGINT(16) NOT NULL,
+  PRIMARY KEY (`order_id`),
+  INDEX `product_id_idx` (`product_id` ASC) VISIBLE,
+  INDEX `user_id_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `user_id_orders`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `ecommerce`.`users` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `product_id_orders`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `ecommerce`.`products` (`product_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
