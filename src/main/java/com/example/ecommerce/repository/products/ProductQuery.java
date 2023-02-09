@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ProductQuery {
     List<Products> getProductByCategoryId(int id);
+    Products getIndividualProduct(int id);
 
 }

@@ -26,4 +26,7 @@ public class ProductsService {
         return productsQueryImplementation.getProductByCategoryId(productCategoryId);
 
     }
+    public Products getIndividualProduct(int productId){
+        return productsQueryImplementation.getIndividualProduct(productId);
+    }
 }

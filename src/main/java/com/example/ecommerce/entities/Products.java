@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -18,6 +19,7 @@ public class Products {
     Integer productId;
     String productName;
     Integer productCategoryId;
+    @Column(length = 10000)
     String productImage;
 
     @Override

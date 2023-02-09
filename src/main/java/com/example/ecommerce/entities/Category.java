@@ -17,12 +17,14 @@ public class Category {
     @Id
     Integer categoryId;
     String categoryName;
+    String categoryImage;
 
     @Override
     public String toString() {
         return "Category{" +
                 "categoryId=" + categoryId +
                 ", categoryName='" + categoryName + '\'' +
+                ", categoryImage='" + categoryImage + '\'' +
                 '}';
     }
 }
