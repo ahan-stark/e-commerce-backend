@@ -19,7 +19,7 @@ public class CartQueryImplementation implements CartQuery {
     @Override
     public void addToCart(Integer userId, Integer productId) {
         String insertQuery = "insert into cart (user_id, product_id) values (?, ?)";
-        jdbcTemplate.update(insertQuery, userId, productId);
+        jdbcTemplate.update(insertQuery,new Object[]{userId,productId});
 
     }
 
