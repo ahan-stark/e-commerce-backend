@@ -1,5 +1,6 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.entities.Cart;
 import com.example.ecommerce.entities.Products;
 import com.example.ecommerce.repository.cart.CartQueryImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,8 @@ public class CartServices {
     public List<Products> deleteCartItem(Integer userId, Integer productId){
         cartQueryImplementation.deleteCartItem(userId,productId);
         return cartQueryImplementation.getCartItems(userId);
+    }
+    public Cart checkIfProductExists(Integer userId, Integer productId){
+            return  cartQueryImplementation.checkIfProductExists(userId,productId);
     }
 }

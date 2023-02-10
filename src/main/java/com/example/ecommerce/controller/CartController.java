@@ -32,4 +32,8 @@ public class CartController {
         cartServices.deleteCartItem(userId, productId);
         return cartServices.getCartItems(userId);
     }
+    @GetMapping("/check-cart/{userId}/{productId}")
+    public Cart checkIfProductExists(@PathVariable("userId")Integer userId,@PathVariable("productId")Integer productId){
+        return cartServices.checkIfProductExists(userId,productId);
+    }
 }
