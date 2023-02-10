@@ -24,6 +24,7 @@ public class ProductsQueryImplementation implements ProductQuery {
             products.setProductCategoryId(rs.getInt("product_category_id"));
             products.setProductName(rs.getString("product_name"));
             products.setProductImage(rs.getString("product_image"));
+            products.setProductPrice(rs.getInt("product_price"));
             return products;
         });
     }

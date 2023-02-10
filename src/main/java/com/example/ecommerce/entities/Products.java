@@ -21,6 +21,8 @@ public class Products {
     Integer productCategoryId;
     @Column(length = 10000)
     String productImage;
+    Integer productPrice;
+
 
     @Override
     public String toString() {
