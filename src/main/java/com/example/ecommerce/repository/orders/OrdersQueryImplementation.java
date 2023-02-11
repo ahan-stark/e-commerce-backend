@@ -15,8 +15,9 @@ public class OrdersQueryImplementation implements OrdersQuery {
     @Override
     public List<Cart> getCartItems(Integer userId) {
         List<Cart> cartItemsOfTheUser;
-        cartItemsOfTheUser = jdbcTemplate.query("select user_id,product_id from cart where user_id =" + userId, ((rs, rowNum) -> {
+        cartItemsOfTheUser = jdbcTemplate.query("select cart_id,user_id,product_id from cart where user_id =" + userId, ((rs, rowNum) -> {
             Cart cart = new Cart();
+            cart.setCartId(rs.getInt("cart_id"));
             cart.setUserId(rs.getInt("user_id"));
             cart.setProductId(rs.getInt("product_id"));
             return cart;

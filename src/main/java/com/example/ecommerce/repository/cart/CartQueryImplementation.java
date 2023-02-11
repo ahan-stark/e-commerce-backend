@@ -25,12 +25,13 @@ public class CartQueryImplementation implements CartQuery {
 
     @Override
     public List<Products> getCartItems(Integer userId) {
-        return jdbcTemplate.query("select products.product_id, products.product_name, products.product_category_id,products.product_image  from products inner join cart on cart.product_id = products.product_id where cart.user_id = " + userId, ((rs, rowNum) -> {
+        return jdbcTemplate.query("select products.product_id, products.product_name, products.product_category_id,products.product_image,products.product_price  from products inner join cart on cart.product_id = products.product_id where cart.user_id = " + userId, ((rs, rowNum) -> {
             Products products = new Products();
             products.setProductId(rs.getInt("product_id"));
             products.setProductCategoryId(rs.getInt("product_category_id"));
             products.setProductName(rs.getString("product_name"));
             products.setProductImage(rs.getString("product_image"));
+            products.setProductPrice(rs.getInt("product_price"));
             return products;
         }));
     }
