@@ -81,3 +81,12 @@ CREATE TABLE `ecommerce`.`orders` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+ CREATE TABLE `ecommerce`.`super_cart` (
+  `super_cart_id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NULL,
+  `product_id` INT NULL,
+  `product_booking_price` INT NULL,
+  PRIMARY KEY (`super_cart_id`));
+
+
+

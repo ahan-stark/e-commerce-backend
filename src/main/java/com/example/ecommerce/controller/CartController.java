@@ -34,7 +34,7 @@ public class CartController {
     }
     @GetMapping("/check-cart/{userId}/{productId}")
     public Cart checkIfProductExists(@PathVariable("userId")Integer userId,@PathVariable("productId")Integer productId){
-            return cartServices.checkIfProductExists(userId, productId);
+        return cartServices.checkIfProductExists(userId, productId);
 
         }
     }

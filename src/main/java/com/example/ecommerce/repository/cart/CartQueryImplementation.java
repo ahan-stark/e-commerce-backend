@@ -45,15 +45,22 @@ public class CartQueryImplementation implements CartQuery {
     @Override
     public Cart checkIfProductExists(Integer userId, Integer productId) {
         String sql = "select cart_id, product_id,user_id from cart where user_id = ? and product_id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{userId,productId}, new RowMapper<Cart>() {
-            @Override
-            public Cart mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Cart cart = new Cart();
-                cart.setCartId((Integer) rs.getObject("cart_id"));
-                cart.setUserId((Integer) rs.getObject("user_id"));
-                cart.setProductId((Integer) rs.getObject("product_id"));
-                return cart;
-            }
-        });
+        try{
+            Cart cart = jdbcTemplate.queryForObject(sql, new Object[]{userId, productId}, new RowMapper<Cart>() {
+                @Override
+                public Cart mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    Cart cart = new Cart();
+                    cart.setCartId((Integer) rs.getObject("cart_id"));
+                    cart.setUserId((Integer) rs.getObject("user_id"));
+                    cart.setProductId((Integer) rs.getObject("product_id"));
+                    return cart;
+                }
+
+            });
+            return cart;
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 }
