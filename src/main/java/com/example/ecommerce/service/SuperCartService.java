@@ -18,4 +18,12 @@ public class SuperCartService {
     public List<SuperCartReturn> getSuperCart(Integer userId) {
         return superCartQueryImplementation.getSuperCart(userId);
     }
+
+    public void deleteSuperCart(Integer userId, Integer productId) {
+        superCartQueryImplementation.deleteSuperCart(userId,productId);
+    }
+
+    public SuperCartReturn checkSuperCart(Integer userId, Integer productId) {
+        return superCartQueryImplementation.checkSuperCart(userId,productId);
+    }
 }

@@ -13,14 +13,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class SuperCartQueryImplementation implements SuperCartQuery{
+public class SuperCartQueryImplementation implements SuperCartQuery {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public void addToSuperCart(Integer userId, Integer productId, Integer productBookingPrice) {
         String query = "insert into ecommerce.super_cart(user_id,product_id,product_booking_price) values (?,?,?)";
-        jdbcTemplate.update(query,userId,productId,productBookingPrice);
+        jdbcTemplate.update(query, userId, productId, productBookingPrice);
     }
 
     @Override
@@ -34,6 +34,34 @@ public class SuperCartQueryImplementation implements SuperCartQuery{
             superCartReturn.setProductBookedPrice(rs.getInt("product_booking_price"));
             return superCartReturn;
         }));
+    }
+
+    @Override
+    public void deleteSuperCart(Integer userId, Integer productId) {
+        String query = "delete from super_cart where product_id=? and user_id=?";
+        jdbcTemplate.update(query, productId, userId);
+    }
+
+    @Override
+    public SuperCartReturn checkSuperCart(Integer userId, Integer productId) {
+        String sql = "select products.product_id,products.product_image,products.product_name,products.product_price,super_cart.product_booking_price from super_cart join products on products.product_id = super_cart.product_id where super_cart.user_id=? and super_cart.product_id=?";
+        try {
+            SuperCartReturn superCartReturn = jdbcTemplate.queryForObject(sql, new Object[]{userId, productId}, new RowMapper<SuperCartReturn>() {
+                @Override
+                public SuperCartReturn mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    SuperCartReturn superCartReturn =new SuperCartReturn();
+                    superCartReturn.setProductId(rs.getInt("product_id"));
+                    superCartReturn.setProductPrice(rs.getInt("product_price"));
+                    superCartReturn.setProductBookedPrice(rs.getInt("product_booking_price"));
+                    superCartReturn.setProductImage(rs.getString("product_image"));
+                    superCartReturn.setProductName(rs.getString("product_name"));
+                    return superCartReturn;
+                }
+            });
+            return superCartReturn;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
 

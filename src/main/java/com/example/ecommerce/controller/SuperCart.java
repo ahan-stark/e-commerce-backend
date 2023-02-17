@@ -19,4 +19,12 @@ public class SuperCart {
     public List<SuperCartReturn> getSuperCart(@PathVariable("userId")Integer userId){
         return superCartService.getSuperCart(userId);
     }
+    @DeleteMapping("/super-cart/{userId}/{productId}")
+    public void deleteSuperCart(@PathVariable("userId")Integer userId, @PathVariable("productId") Integer productId){
+        superCartService.deleteSuperCart(userId,productId);
+    }
+    @GetMapping("/check-superCart/{userId}/{productId}")
+    public SuperCartReturn checkSuperCart(@PathVariable("userId")Integer userId, @PathVariable("productId") Integer productId){
+        return superCartService.checkSuperCart(userId,productId);
+    }
 }
