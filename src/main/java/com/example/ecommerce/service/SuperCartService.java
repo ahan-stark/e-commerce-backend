@@ -1,5 +1,6 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.dto.NotifyReturn;
 import com.example.ecommerce.dto.SuperCartReturn;
 import com.example.ecommerce.repository.supercart.SuperCartQueryImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,9 @@ public class SuperCartService {
 
     public SuperCartReturn checkSuperCart(Integer userId, Integer productId) {
         return superCartQueryImplementation.checkSuperCart(userId,productId);
+    }
+
+    public List<NotifyReturn> getItemsToNotify() {
+        return superCartQueryImplementation.getItemsToNotify();
     }
 }

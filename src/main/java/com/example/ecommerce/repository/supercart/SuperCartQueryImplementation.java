@@ -1,5 +1,6 @@
 package com.example.ecommerce.repository.supercart;
 
+import com.example.ecommerce.dto.NotifyReturn;
 import com.example.ecommerce.dto.SuperCartReturn;
 import com.example.ecommerce.entities.Cart;
 import com.example.ecommerce.entities.Products;
@@ -61,6 +62,25 @@ public class SuperCartQueryImplementation implements SuperCartQuery {
             return superCartReturn;
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @Override
+    public List<NotifyReturn> getItemsToNotify() {
+        try{
+        String query ="select products.product_id, products.product_price,products.product_name,super_cart.product_booking_price,super_cart.user_id from products join super_cart on products.product_id = super_cart.product_id";
+        return  jdbcTemplate.query(query, ((rs, rowNum) -> {
+            NotifyReturn notifyReturn = new NotifyReturn();
+            notifyReturn.setProductId(rs.getInt("product_id"));
+            notifyReturn.setProductPrice(rs.getInt("product_price"));
+            notifyReturn.setProductName(rs.getString("product_name"));
+            notifyReturn.setProductBookingPrice(rs.getInt("product_booking_price"));
+            notifyReturn.setUserId(rs.getInt("user_id"));
+            return notifyReturn;
+        }));
+    }
+        catch (Exception e){
+            return  null;
         }
     }
 }
