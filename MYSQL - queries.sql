@@ -87,6 +87,12 @@ CREATE TABLE `ecommerce`.`orders` (
   `product_id` INT NULL,
   `product_booking_price` INT NULL,
   PRIMARY KEY (`super_cart_id`));
-
+CREATE TABLE `ecommerce`.`user_details` (
+  `user_id` INT NULL,
+  `user_name` VARCHAR(45) NULL,
+  `user_address` VARCHAR(45) NULL,
+  `user_phone_no` INT NULL);
+ALTER TABLE `ecommerce`.`user_details`
+CHANGE COLUMN `user_phone_no` `user_phone_no` BIGINT(20) NULL DEFAULT NULL ;
 
 
