@@ -12,8 +12,9 @@ import java.util.List;
 public class SuperCartService {
     @Autowired
     SuperCartQueryImplementation superCartQueryImplementation;
-    public void addToSuperCart(Integer userId, Integer productId, Integer productBookingPrice){
-        superCartQueryImplementation.addToSuperCart(userId,productId,productBookingPrice);
+
+    public void addToSuperCart(Integer userId, Integer productId, Integer productBookingPrice) {
+        superCartQueryImplementation.addToSuperCart(userId, productId, productBookingPrice);
     }
 
     public List<SuperCartReturn> getSuperCart(Integer userId) {
@@ -21,11 +22,11 @@ public class SuperCartService {
     }
 
     public void deleteSuperCart(Integer userId, Integer productId) {
-        superCartQueryImplementation.deleteSuperCart(userId,productId);
+        superCartQueryImplementation.deleteSuperCart(userId, productId);
     }
 
     public SuperCartReturn checkSuperCart(Integer userId, Integer productId) {
-        return superCartQueryImplementation.checkSuperCart(userId,productId);
+        return superCartQueryImplementation.checkSuperCart(userId, productId);
     }
 
     public List<NotifyReturn> getItemsToNotify() {
@@ -33,6 +34,11 @@ public class SuperCartService {
     }
 
     public void updateSuperCartStatus(Integer userId, Integer productId) {
-        superCartQueryImplementation.updateSuperCartStatus(userId,productId);
+        superCartQueryImplementation.updateSuperCartStatus(userId, productId);
+    }
+
+    public void bookFromSuperCart(Integer userId, Integer productId) {
+        superCartQueryImplementation.bookFromSuperCart(userId, productId);
+
     }
 }

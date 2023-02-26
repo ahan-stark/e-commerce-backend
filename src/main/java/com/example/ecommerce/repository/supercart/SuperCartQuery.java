@@ -12,4 +12,5 @@ public interface SuperCartQuery {
     public  SuperCartReturn checkSuperCart(Integer userId, Integer productId);
     public List<NotifyReturn> getItemsToNotify();
     public void updateSuperCartStatus(Integer userId,Integer productId);
+    public void bookFromSuperCart(Integer userId,Integer productId);
 }

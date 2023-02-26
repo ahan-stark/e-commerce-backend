@@ -50,11 +50,22 @@ public class SuperCart {
                 if (a.getBookingStatus().equals("notify")) {
                     System.out.println("notify");
                     superCartService.updateSuperCartStatus(a.getUserId(), a.getProductId());
-                    //                twilioService.sendSms(String.valueOf(userInformation.getUserPhoneNo()),"your desired product"+ a.getProductName()+"is below "+ a.getProductBookingPrice()+" buy it now!"+" Devaiah ");
+                    //                twilioService.sendSms(String.valueOf(userInformation.getUserPhoneNo()),"your desired product"+ a.getProductName()+"is below "+ a.getProductBookingPrice()+" buy it now!");
                 } else if (a.getBookingStatus().equals("notified")) {
                     System.out.println("buy it");
+                    bookFromSuperCart(a.getUserId(), a.getProductId());
+                    deleteFromSuperCartAfterCheckOut(a.getUserId(), a.getProductId());
                 }
             }
         }
     }
+
+    public void bookFromSuperCart(Integer userId, Integer productId) {
+        superCartService.bookFromSuperCart(userId, productId);
+    }
+
+    public void deleteFromSuperCartAfterCheckOut(Integer userId, Integer productId) {
+        superCartService.deleteSuperCart(userId, productId);
+    }
+
 }

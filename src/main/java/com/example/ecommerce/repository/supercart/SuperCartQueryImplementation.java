@@ -50,7 +50,7 @@ public class SuperCartQueryImplementation implements SuperCartQuery {
             SuperCartReturn superCartReturn = jdbcTemplate.queryForObject(sql, new Object[]{userId, productId}, new RowMapper<SuperCartReturn>() {
                 @Override
                 public SuperCartReturn mapRow(ResultSet rs, int rowNum) throws SQLException {
-                    SuperCartReturn superCartReturn =new SuperCartReturn();
+                    SuperCartReturn superCartReturn = new SuperCartReturn();
                     superCartReturn.setProductId(rs.getInt("product_id"));
                     superCartReturn.setProductPrice(rs.getInt("product_price"));
                     superCartReturn.setProductBookedPrice(rs.getInt("product_booking_price"));
@@ -67,28 +67,34 @@ public class SuperCartQueryImplementation implements SuperCartQuery {
 
     @Override
     public List<NotifyReturn> getItemsToNotify() {
-        try{
-        String query ="select products.product_id, products.product_price,products.product_name,super_cart.product_booking_price,super_cart.user_id,super_cart.booking_status from products join super_cart on products.product_id = super_cart.product_id";
-        return  jdbcTemplate.query(query, ((rs, rowNum) -> {
-            NotifyReturn notifyReturn = new NotifyReturn();
-            notifyReturn.setProductId(rs.getInt("product_id"));
-            notifyReturn.setProductPrice(rs.getInt("product_price"));
-            notifyReturn.setProductName(rs.getString("product_name"));
-            notifyReturn.setProductBookingPrice(rs.getInt("product_booking_price"));
-            notifyReturn.setUserId(rs.getInt("user_id"));
-            notifyReturn.setBookingStatus(rs.getString("booking_status"));
-            return notifyReturn;
-        }));
-    }
-        catch (Exception e){
-            return  null;
+        try {
+            String query = "select products.product_id, products.product_price,products.product_name,super_cart.product_booking_price,super_cart.user_id,super_cart.booking_status from products join super_cart on products.product_id = super_cart.product_id";
+            return jdbcTemplate.query(query, ((rs, rowNum) -> {
+                NotifyReturn notifyReturn = new NotifyReturn();
+                notifyReturn.setProductId(rs.getInt("product_id"));
+                notifyReturn.setProductPrice(rs.getInt("product_price"));
+                notifyReturn.setProductName(rs.getString("product_name"));
+                notifyReturn.setProductBookingPrice(rs.getInt("product_booking_price"));
+                notifyReturn.setUserId(rs.getInt("user_id"));
+                notifyReturn.setBookingStatus(rs.getString("booking_status"));
+                return notifyReturn;
+            }));
+        } catch (Exception e) {
+            return null;
         }
     }
 
     @Override
     public void updateSuperCartStatus(Integer userId, Integer productId) {
-      String sql =  "UPDATE super_cart SET booking_status = 'notified' WHERE  user_id = ? && product_id = ?";
-      jdbcTemplate.update(sql,userId,productId);
+        String sql = "UPDATE super_cart SET booking_status = 'notified' WHERE  user_id = ? && product_id = ?";
+        jdbcTemplate.update(sql, userId, productId);
+    }
+
+    @Override
+    public void bookFromSuperCart(Integer userId, Integer productId) {
+        Long millis = System.currentTimeMillis();
+        String insertToOrders = "insert into orders(user_id,product_id,order_time_stamp) values (?,?,?)";
+        jdbcTemplate.update(insertToOrders, userId, productId, millis);
     }
 }
 
