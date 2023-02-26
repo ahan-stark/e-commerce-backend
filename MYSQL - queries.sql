@@ -95,4 +95,8 @@ CREATE TABLE `ecommerce`.`user_details` (
 ALTER TABLE `ecommerce`.`user_details`
 CHANGE COLUMN `user_phone_no` `user_phone_no` BIGINT(20) NULL DEFAULT NULL ;
 
+ALTER TABLE `ecommerce`.`super_cart`
+ADD COLUMN `booking_status` VARCHAR(45) NULL DEFAULT 'notify' AFTER `product_booking_price`;
+
+
 

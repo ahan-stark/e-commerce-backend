@@ -47,9 +47,13 @@ public class SuperCart {
         for (NotifyReturn a : val) {
             if (a.getProductBookingPrice() > a.getProductPrice()) {
                 UserInformation userInformation = userInformationService.getUserDetails(a.getUserId());
-                System.out.println(userInformation.getUserPhoneNo());
-                System.out.println(userInformation.getUserName());
-                twilioService.sendSms(String.valueOf(userInformation.getUserPhoneNo()),"your desired product"+ a.getProductName()+"is below "+ a.getProductBookingPrice()+" buy it now!"+" Devaiah ");
+                if (a.getBookingStatus().equals("notify")) {
+                    System.out.println("notify");
+                    superCartService.updateSuperCartStatus(a.getUserId(), a.getProductId());
+                    //                twilioService.sendSms(String.valueOf(userInformation.getUserPhoneNo()),"your desired product"+ a.getProductName()+"is below "+ a.getProductBookingPrice()+" buy it now!"+" Devaiah ");
+                } else if (a.getBookingStatus().equals("notified")) {
+                    System.out.println("buy it");
+                }
             }
         }
     }

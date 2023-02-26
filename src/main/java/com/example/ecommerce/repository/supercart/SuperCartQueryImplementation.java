@@ -68,7 +68,7 @@ public class SuperCartQueryImplementation implements SuperCartQuery {
     @Override
     public List<NotifyReturn> getItemsToNotify() {
         try{
-        String query ="select products.product_id, products.product_price,products.product_name,super_cart.product_booking_price,super_cart.user_id from products join super_cart on products.product_id = super_cart.product_id";
+        String query ="select products.product_id, products.product_price,products.product_name,super_cart.product_booking_price,super_cart.user_id,super_cart.booking_status from products join super_cart on products.product_id = super_cart.product_id";
         return  jdbcTemplate.query(query, ((rs, rowNum) -> {
             NotifyReturn notifyReturn = new NotifyReturn();
             notifyReturn.setProductId(rs.getInt("product_id"));
@@ -76,12 +76,19 @@ public class SuperCartQueryImplementation implements SuperCartQuery {
             notifyReturn.setProductName(rs.getString("product_name"));
             notifyReturn.setProductBookingPrice(rs.getInt("product_booking_price"));
             notifyReturn.setUserId(rs.getInt("user_id"));
+            notifyReturn.setBookingStatus(rs.getString("booking_status"));
             return notifyReturn;
         }));
     }
         catch (Exception e){
             return  null;
         }
+    }
+
+    @Override
+    public void updateSuperCartStatus(Integer userId, Integer productId) {
+      String sql =  "UPDATE super_cart SET booking_status = 'notified' WHERE  user_id = ? && product_id = ?";
+      jdbcTemplate.update(sql,userId,productId);
     }
 }
 

@@ -31,4 +31,8 @@ public class SuperCartService {
     public List<NotifyReturn> getItemsToNotify() {
         return superCartQueryImplementation.getItemsToNotify();
     }
+
+    public void updateSuperCartStatus(Integer userId, Integer productId) {
+        superCartQueryImplementation.updateSuperCartStatus(userId,productId);
+    }
 }
