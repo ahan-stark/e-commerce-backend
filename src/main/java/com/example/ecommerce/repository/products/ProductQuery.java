@@ -7,5 +7,7 @@ import java.util.List;
 public interface ProductQuery {
     List<Products> getProductByCategoryId(int id);
     Products getIndividualProduct(int id);
+    List<Products> getMobileProducts();
+    public List<Products> getTrendyProducts();
 
 }

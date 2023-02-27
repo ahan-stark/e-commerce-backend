@@ -29,4 +29,13 @@ public class ProductsService {
     public Products getIndividualProduct(int productId){
         return productsQueryImplementation.getIndividualProduct(productId);
     }
+
+    public List<Products> getMobileProducts() {
+        return productsQueryImplementation.getMobileProducts();
+    }
+
+    public List<Products> getTrendyProducts() {
+        return productsQueryImplementation.getTrendyProducts();
+
+    }
 }

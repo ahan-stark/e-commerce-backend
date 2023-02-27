@@ -41,7 +41,7 @@ public class ProductsQueryImplementation implements ProductQuery {
 //            return
 //                    0;
 //        });
-        String sql = "select product_id,product_name,product_image,product_category_id from products where product_id = ?";
+        String sql = "select product_id,product_name,product_price,product_image,product_category_id from products where product_id = ?";
        return jdbcTemplate.queryForObject(sql, new Object[]{productId}, new RowMapper<Products>() {
             @Override
             public Products mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -50,9 +50,38 @@ public class ProductsQueryImplementation implements ProductQuery {
                products.setProductName((String) rs.getObject("product_name"));
                products.setProductImage((String) rs.getObject("product_image"));
                products.setProductCategoryId((Integer) rs.getObject("product_category_id"));
+               products.setProductPrice((Integer)rs.getObject("product_price") );
                return products;
             }
         });
 
+    }
+
+    @Override
+    public List<Products> getMobileProducts() {
+        return jdbcTemplate.query("select * from products where product_category_id = 2 ", (rs, rowNum) -> {
+
+            Products products = new Products();
+            products.setProductId(rs.getInt("product_id"));
+            products.setProductCategoryId(rs.getInt("product_category_id"));
+            products.setProductName(rs.getString("product_name"));
+            products.setProductImage(rs.getString("product_image"));
+            products.setProductPrice(rs.getInt("product_price"));
+            return products;
+        });
+    }
+
+    @Override
+    public List<Products> getTrendyProducts() {
+        return jdbcTemplate.query("SELECT * from products order by rand() limit 10;", (rs, rowNum) -> {
+
+            Products products = new Products();
+            products.setProductId(rs.getInt("product_id"));
+            products.setProductCategoryId(rs.getInt("product_category_id"));
+            products.setProductName(rs.getString("product_name"));
+            products.setProductImage(rs.getString("product_image"));
+            products.setProductPrice(rs.getInt("product_price"));
+            return products;
+        });
     }
 }

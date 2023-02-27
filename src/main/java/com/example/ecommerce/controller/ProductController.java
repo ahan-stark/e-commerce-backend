@@ -24,8 +24,18 @@ public class ProductController {
     public List<Products> getProducts(@PathVariable("productCategoryId") Integer productCategoryId) {
         return productsService.getProducts(productCategoryId);
     }
+
     @GetMapping("product-view/{productId}")
-    public Products getIndividualProducts(@PathVariable("productId") Integer productId){
+    public Products getIndividualProducts(@PathVariable("productId") Integer productId) {
         return productsService.getIndividualProduct(productId);
     }
+    @GetMapping("get-mobiles")
+    public List<Products> getMobileProducts(){
+        return productsService.getMobileProducts();
+    }
+    @GetMapping("trendy-products")
+    public List<Products> getTrendyProducts(){
+        return productsService.getTrendyProducts();
+    }
 }
+
