@@ -38,7 +38,7 @@ public class SuperCartQueryImplementation implements SuperCartQuery {
     }
 
     @Override
-    public void deleteSuperCart(Integer userId, Integer productId) {
+    public void deleteSuperCart(Long userId, Integer productId) {
         String query = "delete from super_cart where product_id=? and user_id=?";
         jdbcTemplate.update(query, productId, userId);
     }
@@ -75,7 +75,7 @@ public class SuperCartQueryImplementation implements SuperCartQuery {
                 notifyReturn.setProductPrice(rs.getInt("product_price"));
                 notifyReturn.setProductName(rs.getString("product_name"));
                 notifyReturn.setProductBookingPrice(rs.getInt("product_booking_price"));
-                notifyReturn.setUserId(rs.getInt("user_id"));
+                notifyReturn.setUserId(rs.getLong("user_id"));
                 notifyReturn.setBookingStatus(rs.getString("booking_status"));
                 return notifyReturn;
             }));
@@ -85,13 +85,13 @@ public class SuperCartQueryImplementation implements SuperCartQuery {
     }
 
     @Override
-    public void updateSuperCartStatus(Integer userId, Integer productId) {
+    public void updateSuperCartStatus(Long userId, Integer productId) {
         String sql = "UPDATE super_cart SET booking_status = 'notified' WHERE  user_id = ? && product_id = ?";
         jdbcTemplate.update(sql, userId, productId);
     }
 
     @Override
-    public void bookFromSuperCart(Integer userId, Integer productId) {
+    public void bookFromSuperCart(Long userId, Integer productId) {
         Long millis = System.currentTimeMillis();
         String insertToOrders = "insert into orders(user_id,product_id,order_time_stamp) values (?,?,?)";
         jdbcTemplate.update(insertToOrders, userId, productId, millis);

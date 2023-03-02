@@ -8,9 +8,9 @@ import java.util.List;
 public interface SuperCartQuery {
     public void addToSuperCart(Integer userId,Integer productId,Integer productBookingPrice);
     public List<SuperCartReturn> getSuperCart(Integer userId);
-    public void deleteSuperCart(Integer userId, Integer productId);
+    public void deleteSuperCart(Long userId, Integer productId);
     public  SuperCartReturn checkSuperCart(Integer userId, Integer productId);
     public List<NotifyReturn> getItemsToNotify();
-    public void updateSuperCartStatus(Integer userId,Integer productId);
-    public void bookFromSuperCart(Integer userId,Integer productId);
+    public void updateSuperCartStatus(Long userId,Integer productId);
+    public void bookFromSuperCart(Long userId,Integer productId);
 }

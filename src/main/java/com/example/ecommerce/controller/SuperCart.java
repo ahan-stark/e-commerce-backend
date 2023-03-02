@@ -3,6 +3,7 @@ package com.example.ecommerce.controller;
 import com.example.ecommerce.dto.NotifyReturn;
 import com.example.ecommerce.dto.SuperCartReturn;
 import com.example.ecommerce.dto.UserInformation;
+import com.example.ecommerce.entities.User;
 import com.example.ecommerce.service.SuperCartService;
 import com.example.ecommerce.service.TwilioService;
 import com.example.ecommerce.service.UserInformationService;
@@ -32,7 +33,7 @@ public class SuperCart {
     }
 
     @DeleteMapping("/super-cart/{userId}/{productId}")
-    public void deleteSuperCart(@PathVariable("userId") Integer userId, @PathVariable("productId") Integer productId) {
+    public void deleteSuperCart(@PathVariable("userId") Long userId, @PathVariable("productId") Integer productId) {
         superCartService.deleteSuperCart(userId, productId);
     }
 
@@ -46,7 +47,7 @@ public class SuperCart {
         List<NotifyReturn> val = superCartService.getItemsToNotify();
         for (NotifyReturn a : val) {
             if (a.getProductBookingPrice() > a.getProductPrice()) {
-                UserInformation userInformation = userInformationService.getUserDetails(a.getUserId());
+                User user = userInformationService.getUserDetails(a.getUserId());
                 if (a.getBookingStatus().equals("notify")) {
                     System.out.println("notify");
                     superCartService.updateSuperCartStatus(a.getUserId(), a.getProductId());
@@ -60,11 +61,11 @@ public class SuperCart {
         }
     }
 
-    public void bookFromSuperCart(Integer userId, Integer productId) {
+    public void bookFromSuperCart(Long userId, Integer productId) {
         superCartService.bookFromSuperCart(userId, productId);
     }
 
-    public void deleteFromSuperCartAfterCheckOut(Integer userId, Integer productId) {
+    public void deleteFromSuperCartAfterCheckOut(Long userId, Integer productId) {
         superCartService.deleteSuperCart(userId, productId);
     }
 

@@ -12,6 +12,6 @@ public class NotifyReturn {
     private Integer productPrice;
     private String productName;
     private Integer productBookingPrice;
-    private Integer userId;
+    private Long userId;
     private String bookingStatus;
 }

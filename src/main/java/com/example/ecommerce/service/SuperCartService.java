@@ -21,7 +21,7 @@ public class SuperCartService {
         return superCartQueryImplementation.getSuperCart(userId);
     }
 
-    public void deleteSuperCart(Integer userId, Integer productId) {
+    public void deleteSuperCart(Long userId, Integer productId) {
         superCartQueryImplementation.deleteSuperCart(userId, productId);
     }
 
@@ -33,11 +33,11 @@ public class SuperCartService {
         return superCartQueryImplementation.getItemsToNotify();
     }
 
-    public void updateSuperCartStatus(Integer userId, Integer productId) {
+    public void updateSuperCartStatus(Long userId, Integer productId) {
         superCartQueryImplementation.updateSuperCartStatus(userId, productId);
     }
 
-    public void bookFromSuperCart(Integer userId, Integer productId) {
+    public void bookFromSuperCart(Long userId, Integer productId) {
         superCartQueryImplementation.bookFromSuperCart(userId, productId);
 
     }
