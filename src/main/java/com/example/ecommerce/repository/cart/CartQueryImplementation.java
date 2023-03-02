@@ -51,7 +51,7 @@ public class CartQueryImplementation implements CartQuery {
                 public Cart mapRow(ResultSet rs, int rowNum) throws SQLException {
                     Cart cart = new Cart();
                     cart.setCartId((Integer) rs.getObject("cart_id"));
-                    cart.setUserId((Integer) rs.getObject("user_id"));
+                    cart.setUserId((Long) rs.getObject("user_id"));
                     cart.setProductId((Integer) rs.getObject("product_id"));
                     return cart;
                 }

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Cart {
     @Id
     Integer cartId;
-    Integer userId;
+    Long userId;
     Integer productId;
 
     @Override
