@@ -31,9 +31,12 @@ public class AuthService {
                         loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = jwtProvider.generateToken(authenticate);
+//        Long userId = logic
+
         return AuthenticationResponse.builder()
                 .authenticationToken(token)
                 .username(loginRequest.getUsername())
+                //send user as .userId
                 .build();
     }
 
@@ -43,6 +46,7 @@ public class AuthService {
         user.setEmail(registerRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setCreated(Instant.now());
+        user.setUserPhoneNo(registerRequest.getPhoneNum());
 
         userRepository.save(user);
     }
