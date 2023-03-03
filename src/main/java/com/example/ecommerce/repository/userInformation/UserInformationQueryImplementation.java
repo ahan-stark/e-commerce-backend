@@ -29,4 +29,11 @@ public class UserInformationQueryImplementation implements UserInformationQuery 
         });
         return user;
     }
+
+    @Override
+    public Long getUserId(String username) {
+        String sql = "SELECT user_id FROM user WHERE username = ?";
+        Long userId = jdbcTemplate.queryForObject(sql, Long.class, username);
+        return userId;
+    }
 }

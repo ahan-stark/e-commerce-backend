@@ -13,4 +13,8 @@ public class UserInformationService {
     public User getUserDetails(Long userId){
         return userInformationQueryImplementation.getUserDetails(userId);
     }
+    public Long getUserId(String username){
+        return  userInformationQueryImplementation.getUserId(username);
+
+    }
 }

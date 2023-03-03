@@ -5,4 +5,5 @@ import com.example.ecommerce.entities.User;
 
 public interface UserInformationQuery {
     public User getUserDetails(Long userId);
+    public Long getUserId(String username);
 }

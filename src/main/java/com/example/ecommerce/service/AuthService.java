@@ -7,6 +7,7 @@ import com.example.ecommerce.entities.User;
 import com.example.ecommerce.repository.authentication.UserRepository;
 import com.example.ecommerce.security.JwtProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,8 @@ public class AuthService {
 
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
+    @Autowired
+    UserInformationService userInformationService;
 
     public AuthenticationResponse login(LoginRequest loginRequest) {
         Authentication authenticate = authenticationManager
@@ -31,12 +34,12 @@ public class AuthService {
                         loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = jwtProvider.generateToken(authenticate);
-//        Long userId = logic
+       Long userId = userInformationService.getUserId(loginRequest.getUsername());
 
         return AuthenticationResponse.builder()
                 .authenticationToken(token)
                 .username(loginRequest.getUsername())
-                //send user as .userId
+                .userId(userId)
                 .build();
     }
 
