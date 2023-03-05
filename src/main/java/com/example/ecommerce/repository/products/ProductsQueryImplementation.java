@@ -73,7 +73,7 @@ public class ProductsQueryImplementation implements ProductQuery {
 
     @Override
     public List<Products> getTrendyProducts() {
-        return jdbcTemplate.query("SELECT * from products order by rand() limit 10;", (rs, rowNum) -> {
+        return jdbcTemplate.query("select * from products where product_category_id = 1 or product_category_id = 2 or product_category_id=3 order by rand() limit 12;", (rs, rowNum) -> {
 
             Products products = new Products();
             products.setProductId(rs.getInt("product_id"));
