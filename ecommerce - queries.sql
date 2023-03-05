@@ -11,15 +11,15 @@ CREATE TABLE `ecommerce`.`user` (
   
   CREATE TABLE `ecommerce`.`category` (
   `category_id` INT NOT NULL AUTO_INCREMENT,
-  `category_image` VARCHAR(500) NOT NULL,
-  `category_name` VARCHAR(255) NOT NULL,
+  `category_image` VARCHAR(1000) NOT NULL,
+  `category_name` VARCHAR(250) NOT NULL,
   PRIMARY KEY (`category_id`));
 
 CREATE TABLE `ecommerce`.`products` (
   `product_id` INT NOT NULL AUTO_INCREMENT,
   `product_category_id` INT NOT NULL,
   `product_image` VARCHAR(1000) NOT NULL,
-  `product_name` VARCHAR(100) NOT NULL,
+  `product_name` VARCHAR(250) NOT NULL,
   `product_price` INT NOT NULL,
   PRIMARY KEY (`product_id`),
   INDEX `product_category_id_idx` (`product_category_id` ASC) VISIBLE,

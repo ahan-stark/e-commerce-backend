@@ -59,7 +59,7 @@ public class ProductsQueryImplementation implements ProductQuery {
 
     @Override
     public List<Products> getMobileProducts() {
-        return jdbcTemplate.query("select * from products where product_category_id = 2 ", (rs, rowNum) -> {
+        return jdbcTemplate.query("select * from products where product_category_id = 1 limit 4 ", (rs, rowNum) -> {
 
             Products products = new Products();
             products.setProductId(rs.getInt("product_id"));
