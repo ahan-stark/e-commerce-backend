@@ -4,6 +4,7 @@ package com.example.ecommerce.controller;
 import com.example.ecommerce.dto.AuthenticationResponse;
 import com.example.ecommerce.dto.LoginRequest;
 import com.example.ecommerce.dto.RegisterRequest;
+import com.example.ecommerce.dto.UserRegisterValidation;
 import com.example.ecommerce.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,10 @@ public class AuthController {
         authService.signup(registerRequest);
         return new ResponseEntity<>("User Registration Successful",
                 OK);
+    }
+    @PostMapping("/checkSignUpUser")
+    public UserRegisterValidation checkSignUpUser(@RequestBody RegisterRequest registerRequest){
+        return authService.checkSignUpUser(registerRequest.getUsername());
     }
 
 }

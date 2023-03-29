@@ -3,7 +3,9 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.dto.AuthenticationResponse;
 import com.example.ecommerce.dto.LoginRequest;
 import com.example.ecommerce.dto.RegisterRequest;
+import com.example.ecommerce.dto.UserRegisterValidation;
 import com.example.ecommerce.entities.User;
+import com.example.ecommerce.repository.authentication.UserQueryImplementation;
 import com.example.ecommerce.repository.authentication.UserRepository;
 import com.example.ecommerce.security.JwtProvider;
 import lombok.AllArgsConstructor;
@@ -27,20 +29,22 @@ public class AuthService {
     private final JwtProvider jwtProvider;
     @Autowired
     UserInformationService userInformationService;
+    @Autowired
+    UserQueryImplementation userQueryImplementation;
 
     public AuthenticationResponse login(LoginRequest loginRequest) {
         Authentication authenticate = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                         loginRequest.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authenticate);
-        String token = jwtProvider.generateToken(authenticate);
-       Long userId = userInformationService.getUserId(loginRequest.getUsername());
+            SecurityContextHolder.getContext().setAuthentication(authenticate);
+            String token = jwtProvider.generateToken(authenticate);
+            Long userId = userInformationService.getUserId(loginRequest.getUsername());
 
-        return AuthenticationResponse.builder()
-                .authenticationToken(token)
-                .username(loginRequest.getUsername())
-                .userId(userId)
-                .build();
+            return AuthenticationResponse.builder()
+                    .authenticationToken(token)
+                    .username(loginRequest.getUsername())
+                    .userId(userId)
+                    .build();
     }
 
     public void signup(RegisterRequest registerRequest) {
@@ -52,6 +56,9 @@ public class AuthService {
         user.setUserPhoneNo(registerRequest.getPhoneNum());
 
         userRepository.save(user);
+    }
+    public UserRegisterValidation checkSignUpUser(String userName){
+        return userQueryImplementation.checkSignUpUser(userName);
     }
 
 }
