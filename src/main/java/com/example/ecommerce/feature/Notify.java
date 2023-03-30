@@ -21,7 +21,7 @@ public class Notify {
     UserInformationService userInformationService;
     @Autowired
     TwilioService twilioService;
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 60000)
     public void getItemsToNotify() {
         List<NotifyReturn> val = superCartService.getItemsToNotify();
         for (NotifyReturn a : val) {
@@ -30,7 +30,7 @@ public class Notify {
                 if (a.getBookingStatus().equals("notify")) {
                     System.out.println("notify");
                     superCartService.updateSuperCartStatus(a.getUserId(), a.getProductId());
-                    //                twilioService.sendSms(String.valueOf(userInformation.getUserPhoneNo()),"your desired product"+ a.getProductName()+"is below "+ a.getProductBookingPrice()+" buy it now!");
+                    twilioService.sendSms(String.valueOf(user.getUserPhoneNo()),"your desired product"+ a.getProductName()+"is below "+ a.getProductBookingPrice()+" buy it now!");
                 } else if (a.getBookingStatus().equals("notified")) {
                     System.out.println("buy it");
                     bookFromSuperCart(a.getUserId(), a.getProductId());

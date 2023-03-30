@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,9 +34,10 @@ public class AuthService {
     UserQueryImplementation userQueryImplementation;
 
     public AuthenticationResponse login(LoginRequest loginRequest) {
-        Authentication authenticate = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
-                        loginRequest.getPassword()));
+        try {
+            Authentication authenticate = authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                            loginRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authenticate);
             String token = jwtProvider.generateToken(authenticate);
             Long userId = userInformationService.getUserId(loginRequest.getUsername());
@@ -45,6 +47,14 @@ public class AuthService {
                     .username(loginRequest.getUsername())
                     .userId(userId)
                     .build();
+        } catch (AuthenticationException e) {
+            return AuthenticationResponse.builder()
+                    .authenticationToken("failed user details")
+                    .username("failed user name")
+                    .userId(null)
+                    .build();
+        }
+
     }
 
     public void signup(RegisterRequest registerRequest) {
