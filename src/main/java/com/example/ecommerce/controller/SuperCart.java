@@ -34,5 +34,9 @@ public class SuperCart {
     public SuperCartReturn checkSuperCart(@PathVariable("userId") Integer userId, @PathVariable("productId") Integer productId) {
         return superCartService.checkSuperCart(userId, productId);
     }
-
+    @PostMapping("/super-cart/book/{userId}/{productId}")
+    public void bookDirectlyFromSuperCart(@PathVariable("userId") Long userId, @PathVariable("productId") Integer productId){
+        superCartService.bookFromSuperCart(userId, productId);
+        superCartService.deleteSuperCart(userId, productId);
+    }
 }

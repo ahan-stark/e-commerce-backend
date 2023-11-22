@@ -30,7 +30,7 @@ public class Notify {
                 if (a.getBookingStatus().equals("notify")) {
                     System.out.println("notify");
                     superCartService.updateSuperCartStatus(a.getUserId(), a.getProductId());
-                    twilioService.sendSms(String.valueOf(user.getUserPhoneNo()),"your desired product"+ a.getProductName()+"is below "+ a.getProductBookingPrice()+" buy it now!");
+                    twilioService.sendSms(String.valueOf(user.getUserPhoneNo()),"your desired product "+ a.getProductName()+"is below "+ a.getProductBookingPrice()+" buy it now!");
                 } else if (a.getBookingStatus().equals("notified")) {
                     System.out.println("buy it");
                     bookFromSuperCart(a.getUserId(), a.getProductId());
