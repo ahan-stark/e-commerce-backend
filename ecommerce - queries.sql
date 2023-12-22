@@ -1,3 +1,5 @@
+--Run Below queries
+
 create database ecommerce;
 
 CREATE TABLE `ecommerce`.`user` (
