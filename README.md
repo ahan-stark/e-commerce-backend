@@ -33,4 +33,9 @@
     • Front-end: Angular<br/>
     • Back-end: Spring Boot<br/>
     • Database: MySQL<br/><br/><br/>
+<h3>Project Flow</h3>
+<img src = "Images/E-Commerce-Design.png">
+
+<h3>ER Diagram</h3>
+<img src = "Images/ER-DIAGRAM.png">
 
